@@ -26,5 +26,15 @@ function check_guess() {
 		alert("Enter a number between the range of 1 to 100");
 		return false;
 	}
-	if()
+	if(guess_input > target) {
+		alert("Your number is too large.");
+		return false;
+	}
+	if(guess_input < target) {
+		alert("Your number is too small.");
+		return false;
+	}
+
+	alert("You got it Right!!");
+	return true;
 }
