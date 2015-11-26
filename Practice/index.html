@@ -5,13 +5,14 @@
 </head>
 <body>
 	<script>
-		var continents = ["Australia", "Antartica", "USA", "Eurasia"];
-		var response, count = 0;
-		for(int i = 0; i < continents.length; i++) {
-			response = confirm("Have you been to " + continents[i]);
-			if(response) count++;
+		var total_amount = 0;
+		while(true) {
+			this_amount = prompt("How much in this account");
+			this_amount = parseFloat(this_amount);
+			if(this_amount > 0) total_amount += this_amount;
+			else break;
 		}
-		alert("You have been to " + count + " continents");
+		alert("Your Savings are " + total_amount);
 	</script>
 </body>
 </html>
