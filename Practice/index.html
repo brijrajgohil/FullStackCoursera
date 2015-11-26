@@ -5,17 +5,11 @@
 </head>
 <body>
 	<script>
-		var pets = ["Dog", "Cats", "Rabbit", "Hamster", "Rabbit", "Rabbit", "Dog", "Cat",
-		"Hamster", "Hamster", "Rabbit"];
-		var rabbitPositions = [], startSearchAt = 0;
-		do {
-			foundAt = pets.indexOf("Rabbit", startSearchAt);
-			if(foundAt != -1) {
-				rabbitPositions.push(foundAt);
-				startSearchAt = foundAt + 1;
-			}
-		} while(foundAt != -1);
-		alert(rabbitPositions);
+		var numbers = [1, 2, 3, 4, 5];
+		numbers.forEach(function(elem, idx, arr) {
+			arr[idx] = elem * elem;
+		});
+		alert(numbers);
 	</script>
 </body>
 </html>
