@@ -5,13 +5,17 @@
 </head>
 <body>
 	<script>
-		var year, great_years = [];
-		for(year = 2014; year <= 2016; year++) {
-			correct = confirm("Was " + year + " awesome for you?");
-			if(!correct) continue;
-			great_years.push(year);
-		}
-		alert("Great years are " + great_years);
+		var pets = ["Dog", "Cats", "Rabbit", "Hamster", "Rabbit", "Rabbit", "Dog", "Cat",
+		"Hamster", "Hamster", "Rabbit"];
+		var rabbitPositions = [], startSearchAt = 0;
+		do {
+			foundAt = pets.indexOf("Rabbit", startSearchAt);
+			if(foundAt != -1) {
+				rabbitPositions.push(foundAt);
+				startSearchAt = foundAt + 1;
+			}
+		} while(foundAt != -1);
+		alert(rabbitPositions);
 	</script>
 </body>
 </html>
