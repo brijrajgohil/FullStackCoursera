@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Practice Page</title>
+</head>
+<body>
+	<script>
+		var continents = ["Australia", "Antartica", "USA", "Eurasia"];
+		var response, count = 0;
+		for(int i = 0; i < continents.length; i++) {
+			response = confirm("Have you been to " + continents[i]);
+			if(response) count++;
+		}
+		alert("You have been to " + count + " countries");
+	</script>
+</body>
+</html>
