@@ -5,11 +5,10 @@
 </head>
 <body>
 	<script>
+		var square = function(el) { el * el };
 		var numbers = [1, 2, 3, 4, 5];
-		numbers.forEach(function(elem, idx, arr) {
-			arr[idx] = elem * elem;
-		});
-		alert(numbers);
+		var results = numbers.map(square);
+		alert(results);
 	</script>
 </body>
 </html>
