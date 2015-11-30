@@ -4,11 +4,24 @@
 	<title>Practice Page</title>
 </head>
 <body>
+	<h2 style="color:black" id="cute_text"> Click on the button to change the color.</h2>
+	<form>
+		<input onclick="change_color1()" type="button" value="Method 1">
+		<input onclick="change_color2()" type="button" value="Method 2">
+		<input onclick="change_color3()" type="button" value="Method 3">
+	</form>
 	<script>
-		var square = function(el) { el * el };
-		var numbers = [1, 2, 3, 4, 5];
-		var results = numbers.map(square);
-		alert(results);
+		function change_color1() {
+			document.childNodes[0].childNodes[1].childNodes[1].style.color = "red";
+		}
+
+		function change_color2() {
+			document.getElementsByTagName("h2")[0].style.color = "yellow";
+		}
+
+		function change_color3() {
+			document.getElementById("cute_text").style.color = "blue";
+		}
 	</script>
 </body>
 </html>
