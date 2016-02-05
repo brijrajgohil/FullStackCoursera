@@ -23,7 +23,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#myScrollSpy" data-offset="200">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -86,6 +86,8 @@
     </header>
 
     <div class="container">
+      <div class="row">
+      <div class="col-xs-12 col-sm-10">
         <div>
             <div>
                 <ul class="breadcrumb">
@@ -99,7 +101,7 @@
             </div>
         </div>
 
-        <div class="row-content">
+        <div id="history" class="row-content">
             <div class="col-xs-12 col-sm-6 col-lg-8">
                 <h2>Our History</h2>
                 <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
@@ -137,24 +139,9 @@
         </div>
 
 
-        <div class="row-content">
+        <div id="corporate" class="row-content">
             <div class="col-xs-12">
                 <h2>Corporate Leadership</h2>
-                <!--<ul class="nav nav-tabs" role="tablist">
-                  <li class="active" role="presentation">
-                    <a href="#peter" aria-controls="peter" role="tab" data-toggle="tab">
-                      Peter Pan, CEO</a></li>
-                  <li role="presentation">
-                    <a href="#danny" aria-controls="danny" role="tab" data-toggle="tab">
-                      Danny Witherspoon, CFO</a></li>
-                  <li role="presentation">
-                    <a href="#agumbe" aria-controls="agumbe" role="tab" data-toggle="tab">
-                      Agumbe Tang, CTO</a></li>
-                  <li role="presentation">
-                    <a href="#alberto" aria-controls="alberto" role="tab" data-toggle="tab">
-                      Alberto Somayya, Exec. Chef</a></li>
-                </ul> -->
-
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingPeter">
@@ -247,7 +234,7 @@
               </div>
               </div>
             </div>
-       <div class="row row-content">
+       <div id="facts" class="row row-content">
          <div class="col-xs-12">
            <h2>Facts &amp; Figures</h2>
            <div class="table-responsive">
@@ -286,6 +273,15 @@
                 </div>
          </div>
        </div>
+     </div>
+   </div>
+   <nav class="hidden-xs col-sm-2" id="myScrollspy">
+           <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="400">
+               <li><a href="#history">Our History</a></li>
+               <li><a href="#corporate">Corporate</a></li>
+               <li><a href="#facts">Facts</a></li>
+           </ul>
+       </nav>
     </div>
 
     <footer class="row-footer">
