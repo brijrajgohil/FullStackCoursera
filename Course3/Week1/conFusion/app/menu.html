@@ -29,26 +29,23 @@
         <div class="row row-content" ng-controller="menuController as menuCtrl">
             <div class="col-xs-12">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation">
-                        <a aria-controls="all menu" role="tab" ng-click="menuCtrl.select(1)">
-                            All Menu</a>
+                    <li role="presentation" ng-class="{active:menuCtrl.isSelected(1)}">
+                        <a aria-controls="all menu" role="tab" ng-click="menuCtrl.select(1)">All Menu</a>
                     </li>
-                    <li role="presentation">
-                        <a aria-controls="appetizers" role="tab" ng-click="menuCtrl.select(2)">
-                            Appetizers</a>
+                    <li role="presentation" ng-class="{active:menuCtrl.isSelected(2)}">
+                        <a aria-controls="appetizers" role="tab" ng-click="menuCtrl.select(2)">Appetizers</a>
                     </li>
-                    <li role="presentation">
-                        <a aria-controls="mains" role="tab" ng-click="menuCtrl.select(3)">
-                            Mains</a>
+                    <li role="presentation" ng-class="{active:menuCtrl.isSelected(3)}">
+                        <a aria-controls="mains" role="tab" ng-click="menuCtrl.select(3)">Mains</a>
                     </li>
-                    <li role="presentation">
-                        <a aria-controls="desserts" role="tab" ng-click="menuCtrl.select(4)">
-                            Desserts</a>
+                    <li role="presentation" ng-class="{active:menuCtrl.isSelected(4)}">
+                        <a aria-controls="desserts" role="tab" ng-click="menuCtrl.select(4)">Desserts</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <ul class="media-list tab-pane fade in active">
-                        <li class="media" ng-repeat="dish in menuCtrl.dishes">
+                        <li class="media" ng-repeat="dish in menuCtrl.dishes
+                         | filter:menuCtrl.filtText">
                             <div class="media-left media-middle">
                                 <a href="#">
                                     <img class="media-object img-thumbnail"
@@ -76,7 +73,7 @@
     app.controller('menuController', function(){
 
         this.tab = 1;
-
+        this.filtText = '';
         var dishes=[
                  {
                    name:'Uthapizza',
@@ -116,6 +113,27 @@
                 }
             ];
             this.dishes = dishes;
+
+            this.select = function(setTab) {
+                this.tab = setTab;
+                if(setTab === 2) {
+                    this.filtText = "appetizer";
+                }
+                else if(setTab === 3) {
+                    this.filtText = "mains";
+                }
+                else if(setTab === 4) {
+                    this.filtText = "dessert";
+                }
+                else {
+                    this.filtText = "";
+                }
+
+            }
+
+            this.isSelected = function(checkTab) {
+                return (this.tab === checkTab);
+            }
     });
 </script>
 </body>
