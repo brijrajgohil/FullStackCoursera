@@ -123,6 +123,35 @@ angular.module('confusionApp', [])
 
     .controller('DishDetailController', ['$scope', function($scope) {
 
+
+        $scope.ratingData = {
+            rating: 5,
+            comment: "",
+            author: "",
+            date: new Date()
+        };
+
+        $scope.sendRating = function() {
+            console.log($scope.ratingData);
+            if($scope.ratingData.comment !== "" && $scope.ratingData.author !== "") {
+                $scope.dish.comments.push({
+                    rating: parseInt($scope.ratingData.rating),
+                    comment: $scope.ratingData.comment,
+                    author: $scope.ratingData.author,
+                    date: new Date()
+                });
+
+                $scope.ratingForm.$setPristine();
+
+                $scope.ratingData = {
+                    rating: 5,
+                    comment: "",
+                    author: "",
+                    date: new Date()
+                };
+            }
+        };
+
         $scope.dish = {
                       name:'Uthapizza',
                       image: 'images/uthapizza.png',
@@ -164,4 +193,5 @@ angular.module('confusionApp', [])
 
                        ]
                 };
+
     }]);
