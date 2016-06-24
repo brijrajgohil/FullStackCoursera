@@ -92,7 +92,7 @@ angular.module('confusionApp')
             rating: 5,
             comment: "",
             author: "",
-            date: new Date()
+            date: ""
         };
 
         $scope.sendRating = function() {
@@ -102,7 +102,7 @@ angular.module('confusionApp')
                     rating: parseInt($scope.ratingData.rating),
                     comment: $scope.ratingData.comment,
                     author: $scope.ratingData.author,
-                    date: new Date()
+                    date: new Date().toISOString()
                 });
 
                 $scope.ratingForm.$setPristine();
@@ -111,13 +111,10 @@ angular.module('confusionApp')
                     rating: 5,
                     comment: "",
                     author: "",
-                    date: new Date()
+                    date: ""
                 };
             }
         };
-
-        var dish = menuFactory.getDish(3);
-
-        $scope.dish = dish;
+        $scope.dish = menuFactory.getDish(3);
 
     }]);
