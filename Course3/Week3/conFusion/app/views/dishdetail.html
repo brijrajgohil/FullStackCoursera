@@ -22,7 +22,7 @@
                     <label for="filter"><span class="small" style="color: #777;">Sort By  </span></label>
                     <input type="text" ng-model="filterTxt" ng-change="">
                 </div>
-            </div>
+            </div>          
             <blockquote ng-repeat="comment in dish.comments | orderBy:filterTxt">
                 <p>{{comment.rating}} Stars</p>
                 <p>{{comment.comment}}</p>
