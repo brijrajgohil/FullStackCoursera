@@ -1,3 +1,54 @@
 'use strict';
 
-angular.module('confusionApp', []);
+angular.module('confusionApp', ['ui.router'])
+    .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('app', {
+                url: '/',
+                views: {
+                    'header': {
+                        templateUrl: 'views/header.html'
+                    },
+                    'content': {
+                        template: '<h1>To be completed</h1>',
+                        controller: 'IndexController'
+                    },
+                    'footer': {
+                        templateUrl: 'views/footer.html'
+                    }
+                }
+            })
+
+            .state('app.aboutus', {
+                url: 'aboutus',
+                views: {
+                    'content@': {
+                        template: '<h1>To be complete</h2>',
+                        controller: 'AboutController'
+                    }
+                }
+            })
+
+            .state('app.contactus', {
+                url: 'contactus',
+                views: {
+                    'content@': {
+                        templateUrl: 'views/contactus.html',
+                        controller: 'ContactController'
+                    }
+                }
+            })
+
+            .state('app.dishdetails', {
+                url: 'menu/:id',
+                views: {
+                    'content@': {
+                        templateUrl: 'views/dishdetail.html',
+                        controller: 'DishDetailController'
+                    }
+                }
+            });
+
+            $urlRouterProvider.otherwise('/');
+    })
+;
