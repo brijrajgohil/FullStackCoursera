@@ -94,3 +94,9 @@ body {
   position: absolute;
   right: 0px;
 }
+
+#map {
+  width: 250px;
+  height: 220px;
+  background-color: #CCC;
+}

@@ -38,24 +38,6 @@
           "comment": "It's your birthday, we're gonna party!",
           "author": "25 Cent",
           "date": "2011-12-02T17:57:28.556094Z"
-        },
-        {
-          "rating": 5,
-          "comment": "",
-          "author": "",
-          "date": "2016-03-13T12:42:15.241Z"
-        },
-        {
-          "rating": "3",
-          "comment": "Akos a nam tu dari?",
-          "author": "Petko",
-          "date": "2016-03-13T12:50:37.791Z"
-        },
-        {
-          "rating": 1,
-          "comment": "fdsFDSFADGFDHGSTDHYFDHFDSVFDSV",
-          "author": "KOkos",
-          "date": "2016-03-13T12:57:11.664Z"
         }
       ]
     },
@@ -106,7 +88,7 @@
       "image": "images/vadonut.png",
       "category": "appetizer",
       "label": "New",
-      "price": "1.99",
+      "price": 1.99,
       "description": "A quintessential ConFusion experience, is it a vada or is it a donut?",
       "comments": [
         {
@@ -138,6 +120,18 @@
           "comment": "It's your birthday, we're gonna party!",
           "author": "25 Cent",
           "date": "2011-12-02T17:57:28.556094Z"
+        },
+        {
+          "rating": 5,
+          "comment": "",
+          "author": "",
+          "date": "2016-04-16T21:05:50.850Z"
+        },
+        {
+          "rating": 5,
+          "comment": "",
+          "author": "",
+          "date": "2016-04-16T21:07:51.710Z"
         }
       ]
     },
@@ -147,7 +141,7 @@
       "image": "images/elaicheesecake.png",
       "category": "dessert",
       "label": "",
-      "price": "2.99",
+      "price": 2.99,
       "description": "A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms",
       "comments": [
         {
@@ -179,6 +173,12 @@
           "comment": "It's your birthday, we're gonna party!",
           "author": "25 Cent",
           "date": "2011-12-02T17:57:28.556094Z"
+        },
+        {
+          "rating": 5,
+          "comment": "",
+          "author": "",
+          "date": "2016-04-16T20:43:42.336Z"
         }
       ]
     }
@@ -229,43 +229,39 @@
   ],
   "feedback": [
     {
-      "mychannel": "Email",
-      "firstName": "Peter",
-      "lastName": "Stolc",
-      "agree": true,
-      "email": "petko@zavinak",
-      "tel": {
-        "areaCode": "11",
-        "number": "12345678"
-      },
-      "comments": "fdasfsdfdfds",
       "id": 1
     },
     {
-      "mychannel": "",
-      "firstName": "petko",
-      "lastName": "dva",
-      "agree": false,
-      "email": "email@f",
-      "tel": {
-        "areaCode": "333",
-        "number": "3432525636"
-      },
-      "comments": "fdsfafdsgdfhs",
       "id": 2
     },
     {
-      "mychannel": "tel",
-      "firstName": "Peter",
-      "lastName": "Stolc",
+      "mychannel": "Email",
+      "firstName": "John",
+      "lastName": "Daly",
       "agree": true,
-      "email": "stolcp@gmail.com",
+      "email": "jdaly@panix.com",
       "tel": {
-        "areaCode": "4",
-        "number": "44444444444444444"
+        "areaCode": "516",
+        "number": "287-4977"
       },
-      "comments": "Poriadne velky comment!!!!!",
+      "comments": "Wonderful",
       "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "mychannel": "tel",
+      "firstName": "Jonathan",
+      "lastName": "Keller",
+      "agree": true,
+      "email": "jkeller@gmaile.com",
+      "tel": {
+        "areaCode": "531",
+        "number": "630-3349"
+      },
+      "comments": "Great food. a little pricey",
+      "id": 5
     }
   ]
 }
