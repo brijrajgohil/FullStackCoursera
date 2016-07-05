@@ -153,7 +153,8 @@ $scope.doReserve = function() {
             };
         }])
 
-        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'baseURL', function($scope, $stateParams, menuFactory, baseURL) {
+        .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'baseURL', '$ionicPopover', '$ionicModal', 'favoriteFactory',
+         function($scope, $stateParams, menuFactory, baseURL, $ionicPopover, $ionicModal, favoriteFactory) {
 
             $scope.baseURL = baseURL;
             $scope.dish = {};
@@ -171,6 +172,51 @@ $scope.doReserve = function() {
                             }
             );
 
+            $scope.dishDetailPopover =  $ionicPopover.fromTemplateUrl('templates/dishdetail-popover.html', {
+                scope: $scope
+            }).then(function(popover) {
+                $scope.dishDetailPopover = popover;
+            });
+
+            $scope.openDishDetailPopover = function($event){
+                $scope.dishDetailPopover.show($event);
+            };
+
+            $scope.addToFavorites = function($event){
+                favoriteFactory.addToFavorites($scope.dish.id);
+                $scope.dishDetailPopover.hide();
+            };
+
+            $ionicModal.fromTemplateUrl('templates/dish-comment.html', {
+                scope: $scope
+                }).then(function(modal) {
+                    $scope.commentModal = modal;
+                });
+
+          $scope.hideComment = function() {
+              $scope.commentModal.hide();
+          };
+
+          $scope.showComment = function() {
+              $scope.commentModal.show();
+          };
+
+          $scope.addComment = function() {
+            // Simulate a login delay. Remove this and replace with your login
+            // code if using a login system
+                $scope.commentData.date = new Date().toISOString();
+                console.log($scope.commentData);
+
+            $scope.dish.comments.push($scope.commentData);
+            menuFactory.getDishes().update({ id: $scope.dish.id }, $scope.dish);
+
+
+            $scope.commentData = { rating: 5, comment: "", author: "", date: "" };
+            $timeout(function() {
+              $scope.hideComment();
+              $scope.popover.hide();
+            }, 1000);
+          };
 
         }])
 
@@ -268,10 +314,6 @@ $scope.doReserve = function() {
                                 console.log('Canceled delete');
                             }
                         });
-
-                        $scope.popOver = function() {
-                            
-                        }
 
                         $scope.shouldShowDelete = false;
 
