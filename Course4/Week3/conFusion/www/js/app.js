@@ -18,29 +18,32 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
-        }
+        };
+        
     });
-
-    $rootScope.$on('loading: show', function() {
-        $ionicLoading.show({
-            template: '<ion-spinner></ion-spinner> Loading ...'
-        })
+    
+    $rootScope.$on('loading:show', function(){
+        $ionicLoading.show(
+            {template: '<ion-spinner></ion-spinner> Loading...'}
+        );
     });
-
-    $rootScope.$on('loading:hide', function() {
+    
+    $rootScope.$on('loading:hide', function(){
         $ionicLoading.hide();
     });
-
-    $rootScope.$on('$stateChangeStart', function () {
-        console.log('Loading ...');
+    
+    $rootScope.$on('$stateChangeStart', function(){
+        console.log('Loading...');
         $rootScope.$broadcast('loading:show');
     });
 
-    $rootScope.$on('$stateChangeSuccess', function () {
+    $rootScope.$on('$stateChangeSuccess', function(){
         console.log('done');
         $rootScope.$broadcast('loading:hide');
     });
+    
 })
+
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -57,7 +60,18 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
     views: {
       'mainContent': {
         templateUrl: 'templates/home.html',
-          controller: 'IndexController'
+          controller: 'IndexController',
+          resolve: {
+              dish:['menuFactory', function(menuFactory){
+                return menuFactory.get({id:1});
+              }],
+              promotion:['promotionFactory', function(promotionFactory){
+                  return promotionFactory.get({id:0});
+              }],
+              leader:['corporateFactory', function(corporateFactory){
+                  return corporateFactory.get({id:3}); 
+              }]
+          }
       }
     }
   })
@@ -67,7 +81,12 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
       views: {
         'mainContent': {
           templateUrl: 'templates/aboutus.html',
-            controller: 'AboutController'
+            controller: 'AboutController',
+            resolve: {
+                leaders:['corporateFactory', function(corporateFactory){
+                    return corporateFactory.query();
+                }]
+            }
         }
       }
     })
@@ -85,41 +104,47 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
       url: '/menu',
       views: {
         'mainContent': {
-          templateUrl: 'templates/menu.html',
-          controller: 'MenuController'
+            templateUrl: 'templates/menu.html',
+            controller: 'MenuController',
+            resolve:{
+                dishes: ['menuFactory', function(menuFactory){
+                    return menuFactory.query();    
+                }]
+            }
         }
       }
     })
-
-    .state('app.favorites', {
-        url: '/favorites',
-        views: {
-          'mainContent': {
+  
+  .state('app.favorites', {
+      url: '/favorites',
+      views: {
+        'mainContent': {
             templateUrl: 'templates/favorites.html',
-              controller:'FavoritesController',
-            resolve: {
-                dishes:  ['menuFactory', function(menuFactory){
-                  return menuFactory.query();
+            controller: 'FavoritesController',
+            resolve:{ 
+                dishes: ['menuFactory', function(menuFactory){
+                    return menuFactory.query();
                 }],
-                              favorites: ['favoriteFactory', function(favoriteFactory) {
+                favorites: ['favoriteFactory', function(favoriteFactory){
                     return favoriteFactory.getFavorites();
                 }]
             }
-          }
         }
-      })
+      }
+    })
 
   .state('app.dishdetails', {
     url: '/menu/:id',
     views: {
       'mainContent': {
-        templateUrl: 'templates/dishdetail.html',
-        controller: 'DishDetailController',
-        resolve: {
-            dish: ['$stateParams','menuFactory', function($stateParams, menuFactory){
-                return menuFactory.get({id:parseInt($stateParams.id, 10)});
-            }]
-        }
+          templateUrl: 'templates/dishdetail.html',
+          controller: 'DishDetailController',
+          resolve: {
+              dish: ['$stateParams','menuFactory',
+                    function($stateParams, menuFactory){
+                        return menuFactory.get({id:parseInt($stateParams.id,10)});
+                    }]
+          }
       }
     }
   });
