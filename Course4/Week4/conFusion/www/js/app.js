@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.services'])
+angular.module('conFusion', ['ionic', 'ngCordova', 'conFusion.controllers', 'conFusion.services'])
 
-.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
+.run(function ($ionicPlatform, $rootScope, $ionicLoading, $cordovaSplashscreen, $timeout) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -18,20 +18,24 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
-        };
-        
+        }
+
+        $timeout(function(){
+                $cordovaSplashscreen.hide();
+            },2000);
+
     });
-    
+
     $rootScope.$on('loading:show', function(){
         $ionicLoading.show(
             {template: '<ion-spinner></ion-spinner> Loading...'}
         );
     });
-    
+
     $rootScope.$on('loading:hide', function(){
         $ionicLoading.hide();
     });
-    
+
     $rootScope.$on('$stateChangeStart', function(){
         console.log('Loading...');
         $rootScope.$broadcast('loading:show');
@@ -41,7 +45,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
         console.log('done');
         $rootScope.$broadcast('loading:hide');
     });
-    
+
 })
 
 
@@ -69,7 +73,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
                   return promotionFactory.get({id:0});
               }],
               leader:['corporateFactory', function(corporateFactory){
-                  return corporateFactory.get({id:3}); 
+                  return corporateFactory.get({id:3});
               }]
           }
       }
@@ -108,20 +112,20 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
             controller: 'MenuController',
             resolve:{
                 dishes: ['menuFactory', function(menuFactory){
-                    return menuFactory.query();    
+                    return menuFactory.query();
                 }]
             }
         }
       }
     })
-  
+
   .state('app.favorites', {
       url: '/favorites',
       views: {
         'mainContent': {
             templateUrl: 'templates/favorites.html',
             controller: 'FavoritesController',
-            resolve:{ 
+            resolve:{
                 dishes: ['menuFactory', function(menuFactory){
                     return menuFactory.query();
                 }],
