@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     assert = require('assert');
 
-var Dishes = require('./models/dishes-1');
+var Promotions = require('./models/promotions');
 
 // Connection URL
 var url = 'mongodb://fokamints:27017/conFusion';
@@ -11,32 +11,36 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     // we're connected!
     console.log("Connected correctly to server");
-    // create a new dish
-    Dishes.create({
-        name: 'Uthapizza',
-        description: 'Test'
-    }, function (err, dish) {
-        if (err) throw err;
-        console.log('Dish created!');
-        console.log(dish);
 
-        var id = dish._id;
+    // create a new dish
+    Promotions.create({
+      "name": "Weekend Grand Buffet",
+      "image": "images/buffet.png",
+      "label": "New",
+      "price": "19.99",
+      "description": "Featuring . . ."
+    }, function (err, promotion) {
+        if (err) throw err;
+        console.log('Promotion created!');
+        console.log(promotion);
+
+        var id = promotion._id;
 
         // get all the dishes
         setTimeout(function () {
-            Dishes.findByIdAndUpdate(id, {
+            Promotions.findByIdAndUpdate(id, {
                     $set: {
                         description: 'Updated Test'
                     }
                 }, {
                     new: true
                 })
-                .exec(function (err, dish) {
+                .exec(function (err, promotion) {
                     if (err) throw err;
-                    console.log('Updated Dish!');
-                    console.log(dish);
+                    console.log('Updated Promotion!');
+                    console.log(promotion);
 
-                    db.collection('dishes').drop(function () {
+                    db.collection('promotions').drop(function () {
                         db.close();
                     });
                 });

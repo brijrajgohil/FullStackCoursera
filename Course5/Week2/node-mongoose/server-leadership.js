@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     assert = require('assert');
 
-var Dishes = require('./models/dishes-1');
+var Leaders = require('./models/leadership');
 
 // Connection URL
 var url = 'mongodb://fokamints:27017/conFusion';
@@ -11,32 +11,36 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     // we're connected!
     console.log("Connected correctly to server");
-    // create a new dish
-    Dishes.create({
-        name: 'Uthapizza',
-        description: 'Test'
-    }, function (err, dish) {
-        if (err) throw err;
-        console.log('Dish created!');
-        console.log(dish);
 
-        var id = dish._id;
+    // create a new dish
+    Leaders.create({
+      "name": "Peter Pan",
+      "image": "images/alberto.png",
+      "designation": "Chief Epicurious Officer",
+      "abbr": "CEO",
+      "description": "Our CEO, Peter, . . ."
+    }, function (err, leader) {
+        if (err) throw err;
+        console.log('Leader created!');
+        console.log(leader);
+
+        var id = leader._id;
 
         // get all the dishes
         setTimeout(function () {
-            Dishes.findByIdAndUpdate(id, {
+            Leaders.findByIdAndUpdate(id, {
                     $set: {
                         description: 'Updated Test'
                     }
                 }, {
                     new: true
                 })
-                .exec(function (err, dish) {
+                .exec(function (err, leader) {
                     if (err) throw err;
-                    console.log('Updated Dish!');
-                    console.log(dish);
+                    console.log('Updated Leader!');
+                    console.log(leader);
 
-                    db.collection('dishes').drop(function () {
+                    db.collection('leaders').drop(function () {
                         db.close();
                     });
                 });

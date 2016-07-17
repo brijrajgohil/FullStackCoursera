@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var Dishes = require('./models/dishes-1');
 
 // Connection URL
-var url = 'mongodb://localhost:27017/conFusion';
+var url = 'mongodb://fokamints:27017/conFusion';
 mongoose.connect(url);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -26,10 +26,9 @@ db.once('open', function () {
         // get all the users
         Dishes.find({}, function (err, dishes) {
             if (err) throw err;
-
             // object of all the users
             console.log(dishes);
-                        db.collection('dishes').drop(function () {
+            db.collection('dishes').drop(function () {
                 db.close();
             });
         });
