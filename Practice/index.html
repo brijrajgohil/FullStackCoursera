@@ -3,7 +3,7 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="app.js"></script>
 
-    <body ng-app="greetings">
-        <welcome></welcome>
+    <body ng-app="coolApp" ng-controller="FunCtrl as fun">
+        <div entering="fun.start()" leaving="fun.end()">Hover for fun times</div>
     </body>
 </html>
