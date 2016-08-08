@@ -1,53 +1,31 @@
-angular.module('greetings', [])
-.directive("welcome", function() {
+;(function(window) {
+
+angular.module('app', [])
+
+// Define directives here
+
+.directive('tab', function() {
+    return {
+        restrict: "E",
+        transclude: true,
+        template: '<h2>Hello world!</h2> <div role="tabpanel" ng-transclude></div>',
+        scope: {},
+        link: function(scope, elm, attr) {}
+    }
+})
+.directive('tabset', function() {
   return {
-    restrict: "E",
-    scope: {},
-    controller: function($scope) {
-      $scope.words = [];
-
-      this.sayHello = function() {
-        $scope.words.push("hello");
-      };
-
-      this.sayHowdy = function() {
-        $scope.words.push("howdy");
-      };
-
-      this.sayHi = function() {
-        $scope.words.push("hi");
-      };
-    },
-
-    link: function(scope, element){
-      element.bind("mouseenter", function() {
-        console.log(scope.words);
-      });
+    restrict: 'E',
+    transclude: true,
+    scope: { },
+    templateUrl: 'tabset.html',
+    bindToController: true,
+    controllerAs: 'tabset',
+    controller: function() {
+      var self = this
+      self.tabs = []
     }
   }
 })
-.directive("hello", function() {
-  return {
-    require: "welcome",
-    link: function (scope, element, attrs, welcomeCtrl) {
-      welcomeCtrl.sayHowdy();
-    }
-  };
- })
- .directive("howdy", function() {
-  return {
-    require: "welcome",
-    link: function (scope, element, attrs, welcomeCtrl) {
-      welcomeCtrl.sayHowdy();
-    }
-  };
- })
 
-.directive("hi", function() {
-  return {
-    require: "welcome",
-    link: function (scope, element, attrs, welcomeCtrl) {
-      welcomeCtrl.sayHi();
-    }
-  };
- });
+})(window);
