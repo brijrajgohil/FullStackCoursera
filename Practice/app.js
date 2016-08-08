@@ -1,30 +1,53 @@
-function FunCtrl() {
-  var self = this;
+angular.module('greetings', [])
+.directive("welcome", function() {
+  return {
+    restrict: "E",
+    scope: {},
+    controller: function($scope) {
+      $scope.words = [];
 
-  self.start = function() {
-    console.log("Fun times have been started!");
-  }
+      this.sayHello = function() {
+        $scope.words.push("hello");
+      };
 
-  self.end = function() {
-      console.log("OVER!");
-  }
+      this.sayHowdy = function() {
+        $scope.words.push("howdy");
+      };
 
-};
+      this.sayHi = function() {
+        $scope.words.push("hi");
+      };
+    },
 
-
-angular.module('coolApp', [])
-.controller('FunCtrl', FunCtrl)
-.directive("entering", function(){
- return function(scope, element, attrs) {
-      element.bind("mouseenter", function(){
-        scope.$apply(attrs.entering);
-      })
+    link: function(scope, element){
+      element.bind("mouseenter", function() {
+        console.log(scope.words);
+      });
     }
+  }
 })
-.directive("leaving", function() {
-    return function(scope, element, attrs) {
-        element.bind("mouseleave", function() {
-            scope.$apply(attrs.leaving);
-        })
+.directive("hello", function() {
+  return {
+    require: "welcome",
+    link: function (scope, element, attrs, welcomeCtrl) {
+      welcomeCtrl.sayHowdy();
     }
-});
+  };
+ })
+ .directive("howdy", function() {
+  return {
+    require: "welcome",
+    link: function (scope, element, attrs, welcomeCtrl) {
+      welcomeCtrl.sayHowdy();
+    }
+  };
+ })
+
+.directive("hi", function() {
+  return {
+    require: "welcome",
+    link: function (scope, element, attrs, welcomeCtrl) {
+      welcomeCtrl.sayHi();
+    }
+  };
+ });
