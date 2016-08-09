@@ -1,31 +1,19 @@
-;(function(window) {
+var app = angular.module('ChoreApp', []);
 
-angular.module('app', [])
+app.controller('ChoreCtrl', function($scope) {
+    $scope.logChore = function(chore) {
+        alert(chore + " is done!");
+    };
+});
 
-// Define directives here
-
-.directive('tab', function() {
+app.directive('kid', function() {
     return {
         restrict: "E",
-        transclude: true,
-        template: '<h2>Hello world!</h2> <div role="tabpanel" ng-transclude></div>',
-        scope: {},
-        link: function(scope, elm, attr) {}
-    }
-})
-.directive('tabset', function() {
-  return {
-    restrict: 'E',
-    transclude: true,
-    scope: { },
-    templateUrl: 'tabset.html',
-    bindToController: true,
-    controllerAs: 'tabset',
-    controller: function() {
-      var self = this
-      self.tabs = []
-    }
-  }
-})
-
-})(window);
+        scope: {
+            done: '&'
+        },
+        template: '<input type="text" ng-model="chore">' +
+        '{{chore}}' +
+        '<div class="button" ng-click="done({chore: chore})">I\'m done</div>'
+    };
+});
