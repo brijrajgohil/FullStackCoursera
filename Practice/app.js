@@ -1,15 +1,7 @@
-var app = angular.module('phoneApp', []);
-app.controller("AppCtrl", function($scope) {
-    $scope.callHome = function(message) {
-        alert(message);
-    };
-});
-
-app.directive('phone', function() {
-    return {
-        scope: {
-            dial: "&"
-        },
-        template: '<div class="button" ng-click="dial()">Call Home!</div>'
-    }
-});
+angular.module('eventExample', [])
+.controller('EventController', ['$scope', function($scope) {
+    $scope.count = 0;
+    $scope.$on('MyEvent', function() {
+        $scope.count++;
+    });
+}]);

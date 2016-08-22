@@ -4,29 +4,27 @@
         <meta charset="utf-8">
         <title>FUN</title>
         <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
-        <script src="invoice3.js" charset="utf-8"></script>
-        <script src="finance3.js" charset="utf-8"></script>
+        <!-- <script src="invoice3.js" charset="utf-8"></script>
+        <script src="finance3.js" charset="utf-8"></script> -->
+        <link rel="stylesheet" href="app.css" charset="utf-8">
+        <script src="app.js" charset="utf-8"></script>
 
     </head>
-    <body>
-        <div ng-app="invoice1" ng-controller="InvoiceController as invoice">
-            <b>Invoice: </b>
-            <div>
-                Quantity: <input type="number" min="0" ng-model="invoice.qty" required>
-            </div>
-            <div>
-                Costs: <input type="number" min="0" ng-model="invoice.cost" required>
-                <select ng-model="invoice.inCurr">
-                    <option ng-repeat="c in invoice.currencies">{{c}}</option>
-                </select>
-            </div>
-            <div>
-                <b>Total: </b>
-                <span ng-repeat="c in invoice.currencies">
-                    {{invoice.total(c) | currency: c}}
-                </span>
-                <button class="btn" ng-click="invoice.pay()">Pay</button>
-            </div>
+    <body ng-app="eventExample">
+        <div ng-controller="EventController">
+            Root scope <tt>MyEvent</tt> count: {{count}}
+            <ul>
+                <li ng-repeat="i in [1]" ng-controller="EventController">
+                    <button ng-click="$emit('MyEvent')">$emit('MyEvent')</button>
+                    <button ng-click="$broadcast('MyEvent')">$broadcast('MyEvent')</button>
+                    <br>
+                    Middle scope <tt>Event</tt> count: {{count}}
+                    <ul>
+                        <li ng-repeat="item in [1, 2]" ng-controller="EventController">
+                            Leaf scope <tt>MyEvent</tt> count: {{count}}
+                        </li>
+                    </ul>
+            </ul>
         </div>
     </body>
 </html>
