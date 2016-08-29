@@ -6,25 +6,15 @@
         <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
         <!-- <script src="invoice3.js" charset="utf-8"></script>
         <script src="finance3.js" charset="utf-8"></script> -->
-        <link rel="stylesheet" href="app.css" charset="utf-8">
         <script src="app.js" charset="utf-8"></script>
 
     </head>
-    <body ng-app="eventExample">
-        <div ng-controller="EventController">
-            Root scope <tt>MyEvent</tt> count: {{count}}
-            <ul>
-                <li ng-repeat="i in [1]" ng-controller="EventController">
-                    <button ng-click="$emit('MyEvent')">$emit('MyEvent')</button>
-                    <button ng-click="$broadcast('MyEvent')">$broadcast('MyEvent')</button>
-                    <br>
-                    Middle scope <tt>Event</tt> count: {{count}}
-                    <ul>
-                        <li ng-repeat="item in [1, 2]" ng-controller="EventController">
-                            Leaf scope <tt>MyEvent</tt> count: {{count}}
-                        </li>
-                    </ul>
-            </ul>
+    <body ng-app="docsTransclusionDirective">
+        <div ng-controller="Controller">
+            {{message}}
+            <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog(message)">
+                Check out the contents, {{name}}!
+            </my-dialog>
         </div>
     </body>
 </html>
