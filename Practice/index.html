@@ -9,15 +9,10 @@
         <script src="app.js" charset="utf-8"></script>
 
     </head>
-    <body ng-app="docsTabsExample">
-        <my-tabs>
-            <my-pane title="Hello">
-                <p> Lorem ipsum dolor sit amet</p>
-            </my-pane>
-            <my-pane title="World">
-                <em>Mauris lement ememrsd enim at suscipit</em>
-                <p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
-            </my-pane>
-        </my-tabs>
+    <body ng-app="heroApp">
+        <div ng-controller="MainCtrl as ctrl">
+            <b>Hero</b>
+            <hero-detail hero="ctrl.hero"></hero-detail>
+        </div>
     </body>
 </html>
