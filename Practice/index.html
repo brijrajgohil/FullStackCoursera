@@ -9,10 +9,17 @@
         <script src="app.js" charset="utf-8"></script>
 
     </head>
-    <body ng-app="heroApp">
-        <div ng-controller="MainCtrl as ctrl">
-            <b>Hero</b>
-            <hero-detail hero="ctrl.hero"></hero-detail>
+    <body ng-app="myApp">
+
+        <div ng-controller="FirstCtrl">
+            <input type="text" ng-model="data.message">
+            <h1>{{data.message}}</h1>
         </div>
+
+        <div ng-controller="SecondCtrl">
+            <input type="text" ng-model="data.message">
+            <h1>{{data.message | reverse}}</h1>
+        </div>
+
     </body>
 </html>
