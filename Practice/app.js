@@ -1,45 +1,34 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngAnimate']);
 
-app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-    .when('/', {
-        templateUrl: 'app.html',
-        controller: 'ViewCtrl',
-    })
-    .when('/new', {
-        templateUrl: 'new.html',
-        controller: 'NewCtrl',
-        resolve: {
-            loadData: viewCtrl.loadData
+app.directive("country", [function() {
+    return {
+        restrict: "E",
+        controller: function() {
+            this.makeAnnouncement = function(message) {
+                console.log("Contry says " + message);
+            }
         }
-    })
-}]);
-
-app.controller('AppCtrl', ['$scope', '$rootScope', '$route', '$location', function($scope, $rootScope, $route, $location) {
-    $rootScope.$on("$routeChangeStart", function(event, current, previous) {
-        console.log($scope, $rootScope, $route, $location);
-    })
-
-    $rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
-        console.log($scope, $rootScope, $route, $location);
-    })
-}]);
-
-var viewCtrl = app.controller('ViewCtrl', ['$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
-    $scope.changeRoute = function() {
-        console.log($scope);
-        $location.path('/new');
     }
 }]);
 
-app.controller('NewCtrl', ['$scope', 'loadData', '$template', function($scope, $loadData, $template) {
-    console.log($scope, loadData, $template);
-}])
+app.directive("state", [function() {
+    return {
+        restrict: "E",
+        controller: function() {
+            this.makeLaw = function(law) {
+                console.log("Law: " + law);
+            }
+        }
+    }
+}]);
 
-viewCtrl.loadData = function($q, $timeout) {
-    var defer = $q.defer();
-    $timeout(function() {
-        defer.resolve({message: "Success!"});
-    }, 1000);
-    return defer.promise;
-};
+app.directive("city", [function() {
+    return {
+        restrict: "E",
+        require: ['^country', '^state'],
+        link: function(scope, element, attrs, ctrls) {
+            ctrls[0].makeAnnouncement("from city");
+            ctrls[1].makeLaw("Jumg Higher");
+        }
+    }
+}])
