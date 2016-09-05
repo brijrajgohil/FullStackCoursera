@@ -4,14 +4,13 @@
         <meta charset="utf-8">
         <title>FUN</title>
         <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
         <!-- <script src="invoice3.js" charset="utf-8"></script>
         <script src="finance3.js" charset="utf-8"></script> -->
         <script src="app.js" charset="utf-8"></script>
 
     </head>
-    <body ng-app="twitterApp">
-        <div ng-controller="AppCtrl">
-            <div enter="loadMoreTweets()">HELLO THIS IS IT!!</div>
-        </div>
+    <body ng-app="app" ng-controller="AppCtrl">
+        <ng-view></ng-view>
     </body>
 </html>
