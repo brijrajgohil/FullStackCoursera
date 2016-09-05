@@ -12,11 +12,9 @@
 
     </head>
     <body ng-app="app">
-        <country>
-            <state>
-                <city>
-                </city>
-            </state>
-        </country>
+        <div ng-controller="AppCtrl as app">
+            <button id="my-button" ng-click="app.fadeIt" style="1px border red;">Click to Fade</button>
+            <div id="my-badge" class="badge" hide-me="app.isHidden">Fade Me</div>
+        </div>
     </body>
 </html>
