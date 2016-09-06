@@ -1,0 +1,23 @@
+{
+  "name": "Practice",
+  "homepage": "https://github.com/brijrajgohil/FullStackCoursera",
+  "authors": [
+    "Brijrajsinh Gohil <brijrajsinhgohil@yahoo.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "1.4.11",
+    "angular-route": "1.4.11",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0"
+  }
+}
