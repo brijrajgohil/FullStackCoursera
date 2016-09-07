@@ -1,5 +1,16 @@
-.show-scope-demo.ng-scope,
-.show-scope-demo .ng-scope  {
-  border: 1px solid red;
-  margin: 3px;
+.box {
+  background:#333;
+  color:#fff;
+
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.box.bigger {
+  font-size:30px;
+}
+
+.box.light-theme {
+  background:#eee;
+  color:#333;
 }

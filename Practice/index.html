@@ -6,14 +6,22 @@
         <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="app.css">
         <!-- <script src="invoice3.js" charset="utf-8"></script>
         <script src="finance3.js" charset="utf-8"></script> -->
         <script src="app.js" charset="utf-8"></script>
 
     </head>
-    <body ng-app="app">
-        <div ng-repeat="item in 'somewords'.split('')">
-            {{$index}}. {{item}}
-        </div>
+    <body ng-app="app" ng-controller="AppCtrl as test">
+        <button ng-click="test.bigger = !test.bigger">
+  Set bigger = {{ !test.bigger }}
+</button>
+<button ng-click="test.lightTheme = !test.lightTheme">
+  Set lightTheme = {{ !test.lightTheme }}
+</button>
+
+<div class="box" ng-class="{ 'bigger': test.bigger, 'light-theme': test.lightTheme }">
+  This is just a box.
+</div>
     </body>
 </html>
